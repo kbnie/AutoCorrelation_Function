@@ -1,0 +1,44 @@
+   1              	.file 1 "feng.cfs"
+   2              	.loc 1 1
+   3              	.loc 1 2
+   4              	.loc 1 3
+   5              	.loc 1 4
+   6              	.loc 1 5
+   7              		.section .FilterEngine_PGM,"awx",@progbits
+   8              	.loc 1 6
+   9 0000 00000000 		.quad 3221228344
+   9      C0000B38 
+  10              	.loc 1 7
+  11 0001 00000000 		.quad 3221494909
+  11      C0041C7D 
+  12              	.loc 1 8
+  13              	.loc 1 9
+  14              		.section .FilterEngine_CFGf304,"awx",@progbits
+  15              	.loc 1 10
+  16 0000 00000000 		.quad 0
+  16      00000000 
+  17              	.loc 1 11
+  18 0001 00000000 		.quad 2
+  18      00000002 
+  19              		.section .cfasm_segments,"",@progbits
+  20 0000 0001     		.short 1
+  21 0002 46696C74 		.asciz "FilterEngine_PGM"
+  21      6572456E 
+  21      67696E65 
+  21      5F50474D 
+  21      00
+  22 0013 FFFFFFFF 		.long -1
+  23 0017 0000F9C0 		.long 63936
+  24 001b 00000001 		.long 1
+  25 001f 00       		.byte 0
+  26 0020 0020     		.short 32
+  27 0022 46696C74 		.asciz "FilterEngine_CFGf304"
+  27      6572456E 
+  27      67696E65 
+  27      5F434647 
+  27      66333034 
+  28 0037 FFFFFFFF 		.long -1
+  29 003b 0000F304 		.long 62212
+  30 003f 00000001 		.long 1
+  31 0043 00       		.byte 0
+  32 0044 0020     		.short 32

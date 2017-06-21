@@ -1,0 +1,308 @@
+// ----------------------------------------------------------------------------
+// Copyright (c) 2013 Semiconductor Components Industries, LLC
+// (d/b/a ON Semiconductor). All Rights Reserved.
+//
+// This code is the property of ON Semiconductor and may not be redistributed
+// in any form without prior written permission from ON Semiconductor. The
+// terms of use and warranty for this code are covered by contractual
+// agreements between ON Semiconductor and the licensee.
+// ----------------------------------------------------------------------------
+// app.cfs
+// - Main application-level file
+// ----------------------------------------------------------------------------
+// $Revision: 1.11 $
+// $Date: 2013/05/16 15:33:42 $
+// ----------------------------------------------------------------------------
+
+#include <sk4_sys.cfi>
+#include <sk4_syslib.cfi>
+#include "app.cfi"
+
+// ----------------------------------------------------------------------------
+// Application Version
+// ----------------------------------------------------------------------------
+
+// Set the global assembler symbol App_Version equal to the
+// pre-processor define APP_VERSION that was defined in app.cfi
+.global App_Version
+    .equ App_Version, APP_VERSION
+
+// ----------------------------------------------------------------------------
+// Main Program
+// ----------------------------------------------------------------------------
+    Sys_Mem_Start_Absolute_Segment(main, SYS_MEMSPACE_P, D_PMEM_BASE)
+
+.global main
+main:
+
+    // Clear status register on the CFX to disable interrupts, saturation,
+    // rounding, etc.
+    load sr, 0
+
+    goto start_app
+
+    // Put the application version in P memory at address 0x8002
+.data App_Version
+
+start_app:
+
+    // Initialize stack pointer and initialize the hardware
+    call.1d Initialize
+    Sys_CFX_InitStack(X_STACK_BOTTOM)   // [ds]
+    
+    store p[D_SPI_DATA], 0x00
+    Sys_SPI_Write(8)
+    Sys_SPI_WaitDone
+
+waitloop:
+
+    // Disable interrupts before checking flags
+    Sys_Int_Master_Disable
+
+    // Check the FIFO 0 done flag
+    load x0, x[X_FIFO_0_DONE]
+    cmp x0, 1 ||| nop
+    goto FIFO_0_done if eq
+
+    // Check the HEAR Function Chain 0 done flag
+    load x0, x[X_HEAR_FUNCTION_CHAIN0_DONE]
+    cmp x0, 1 ||| nop
+    goto HEAR_function_chain0_done if eq
+
+    // Check the HEAR Function Chain 1 done flag
+//    load x0, x[X_HEAR_FUNCTION_CHAIN1_DONE]
+//    cmp x0, 1 ||| nop
+//    goto HEAR_function_chain1_done if eq
+//
+//    // Check the HEAR Function Chain 2 done flag
+//    load x0, x[X_HEAR_FUNCTION_CHAIN2_DONE]
+//    cmp x0, 1 ||| nop
+//    goto HEAR_function_chain2_done if eq
+
+    // Check the CM3 0 done flag
+    load x0, x[X_CM3_0_DONE]
+    cmp x0, 1 ||| nop
+    goto CM3_0_done if eq
+
+//------------------------------------------------
+    //
+    load x0, x[X_SPI_FLAG]
+    cmp x0, 1 ||| nop
+    goto Next_loop if ne
+    
+    store x[X_SPI_FLAG], 0
+//------------------------------------------------
+
+    // Check the SPI done flag
+    load x0, x[X_SPI_DONE]
+    cmp x0, 1 ||| nop
+    goto SPI_done if eq
+
+Next_loop:  
+    // Refresh the watchdog before going to sleep
+    Sys_Watchdog_Refresh
+
+    // Sleep until an interrupt is received.
+    // The interrupt controller will wake us up if any enabled interrupt
+    // is pending, even though the master interrupt enable is disabled at
+    // this point (see the Hardware Reference Manual).
+    sleep
+
+    // Re-enable interrupts using the master enable bit. This will
+    // allow us to service and acknowledge the interrupt which caused
+    // us to wake up.
+    Sys_Int_Master_Enable
+
+    // Loop back to see which interrupt has occurred
+    goto waitloop
+
+// ----------------------------------------------------------------------------
+// FIFO 0 done
+// ----------------------------------------------------------------------------
+FIFO_0_done:
+
+    // Clear the flag
+    store x[X_FIFO_0_DONE], 0
+
+    // Re-enable interrupts
+    Sys_Int_Master_Enable
+    
+    Sys_GPIO_Set_High( 22 )
+
+    // Launch function chain 0 (analysis)
+    Sys_HEAR_Command(function_chain0)
+
+    // Branch back to the top of the main loop
+    goto waitloop
+
+
+//// ----------------------------------------------------------------------------
+//// HEAR function chain 0 done
+//// ----------------------------------------------------------------------------
+HEAR_function_chain0_done:
+
+    // Clear the flag
+    store x[X_HEAR_FUNCTION_CHAIN0_DONE], 0
+
+    // Re-enable interrupts
+    Sys_Int_Master_Enable
+    
+    Sys_GPIO_Set_Low( 22 )
+    
+    
+//    loop.2d 256, end_shift_loop
+//    load xp0, X_GAIN_TABLE_BASE
+//    load xp1, X_AUROCORRELATION_BASE
+//        nop ||| load a0.h, x[xp0++]
+//        nop ||| load a0.l, x[xp0++]
+//        load x0, 4
+//        shra a0, a0, x0 ||| nop 
+//        nop ||| store x[xp1++], a0.l
+//
+//        
+//end_shift_loop:
+//    nop 
+    store x[X_SPI_FLAG], 1
+    nop    
+    
+    nop
+    // Launch function chain 1 (gain)
+//    Sys_HEAR_Command(function_chain1)
+    nop
+    // Branch back to the top of the main loop
+    goto waitloop
+//
+//// ----------------------------------------------------------------------------
+//// HEAR function chain 1 done
+//// ----------------------------------------------------------------------------
+//HEAR_function_chain1_done:
+//
+//    // Clear the flag
+//    store x[X_HEAR_FUNCTION_CHAIN1_DONE], 0
+//    nop
+//    // Re-enable interrupts
+//    Sys_Int_Master_Enable
+//
+//    store x[X_SPI_FLAG], 1
+//    nop
+//    
+//
+//    // Launch function chain 2 (synthesis)
+////    Sys_HEAR_Command(function_chain2)
+//
+//    // Branch back to the top of the main loop
+//    goto waitloop
+
+// ----------------------------------------------------------------------------
+// HEAR function chain 2 done
+// ----------------------------------------------------------------------------
+//HEAR_function_chain2_done:
+//
+//    // Clear the flag
+//    store x[X_HEAR_FUNCTION_CHAIN2_DONE], 0
+//
+//    // Re-enable interrupts
+//    Sys_Int_Master_Enable
+//
+//    // Branch back to the top of the main loop
+//    goto waitloop
+
+// ----------------------------------------------------------------------------
+// CM3 0 done
+// ----------------------------------------------------------------------------
+CM3_0_done:
+
+    // Clear the flag
+    store x[X_CM3_0_DONE], 0
+
+    // Re-enable interrupts
+    Sys_Int_Master_Enable
+
+    // Branch back to the top of the main loop
+    goto waitloop
+
+// ----------------------------------------------------------------------------
+// SPI done
+// ----------------------------------------------------------------------------
+SPI_done:
+
+    // Clear the flag
+    store x[X_SPI_DONE], 0
+
+    // Re-enable interrupts
+    Sys_Int_Master_Enable
+
+    // Launch UART_Transmit
+    call SPI_Transmit
+
+    // Branch back to the top of the main loop
+    goto waitloop 
+    
+// ----------------------------------------------------------------------------
+// Function:       UART_Transmit
+// Description:    Transmit data to D_UART_DATA.
+
+// ----------------------------------------------------------------------------
+// Control Registers:
+// ----------------------------------------------------------------------------
+// Reads:          None
+// Writes:         None
+// ----------------------------------------------------------------------------
+SPI_Transmit:
+    
+    Sys_SPI_CS_Low
+    load x1, 0x8000
+    store p[D_SPI_DATA], x1
+    Sys_SPI_Write(16)
+    Sys_SPI_WaitDone
+    load x1, 0x8000
+    store p[D_SPI_DATA], x1
+    Sys_SPI_Write(16)
+    Sys_SPI_WaitDone
+    load x1, 0x8000
+    store p[D_SPI_DATA], x1
+    Sys_SPI_Write(16)
+    Sys_SPI_WaitDone
+    load x1, 0x8000
+    store p[D_SPI_DATA], x1
+    Sys_SPI_Write(16)
+    Sys_SPI_WaitDone
+
+//    Sys_SPI_CS_High
+  
+    //================================================
+    // Send BLOCK_SIZE upadate samples each time
+    loop.2d 256, end_update_loop
+    load xp0, X_AUROCORRELATION_OUT_BASE
+    nop
+//    load xp1, X_INPUT_FIFO_1_ADDR+ BLOCK_SIZE -1
+    
+//        Sys_SPI_CS_Low
+        nop ||| load x0, x[xp0++]
+//        load x0,0x00AA55
+//        shra x0, 2 ||| nop
+        nop
+        store p[D_SPI_DATA], x0
+        Sys_SPI_Write(16)
+        Sys_SPI_WaitDone
+//        Sys_SPI_CS_High
+        
+////        Sys_SPI_CS_Low
+//        nop ||| load x1, x[xp1--]
+////        load x1,0x04AA55
+//        shra x1, 2 ||| nop
+//        store p[D_SPI_DATA], x1
+//        Sys_SPI_Write(16)
+//        Sys_SPI_WaitDone
+////        Sys_SPI_CS_High
+        nop
+        
+end_update_loop:
+    nop 
+
+    Sys_SPI_CS_High
+
+       
+    // Return from function call
+    return    
+    

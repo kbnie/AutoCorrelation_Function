@@ -1,0 +1,139 @@
+HEAR Configuration Tool, ON Semiconductor
+Generated from ../microcode.hct
+Libraries:
+    C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\stdhear2.hcl[2.0.3]
+
+********************************************************
+
+User Defined Constants
+========================================================
+
+Name                        Expression                                  Hex Value
+---------------------------------------------------------------------------------
+WOLA_La                     512                                         0x200
+WOLA_Ls                     512                                         0x200
+WOLA_N                      256                                         0x100
+WOLA_R                      64                                          0x40
+WOLA_STACKING               WOLA_STACKING_EVEN                          0x0
+WOLA_ANALYSIS_MODE          WOLA_MODE_MONO                              0x0
+WOLA_SYNTHESIS_MODE         WOLA_MODE_MONO                              0x0
+WOLA_SAMPLE_SIZE            WOLA_SAMPLE_18BITS                          0x0
+WOLA_TEMP0_OFFSET           0                                           0x0
+WOLA_TEMP1_OFFSET           0                                           0x0
+WOLA_RESULTS_OFFSET         WOLA_N                                      0x100
+GAIN_VECTOR_OFFSET          0x0                                         0x0
+X_WOLA_TEMP0_BASE           D_HEAR_H01MEM_BASE + WOLA_TEMP0_OFFSET      0x4000
+X_WOLA_TEMP1_BASE           D_HEAR_H23MEM_BASE + WOLA_TEMP1_OFFSET      0x4400
+X_ANALYSIS_RESULTS_BASE     D_HEAR_H01MEM_BASE + WOLA_RESULTS_OFFSET    0x4100
+X_GAIN_TABLE_BASE           D_HEAR_H45MEM_BASE + GAIN_VECTOR_OFFSET     0x4800
+X_AUROCORRELATION_BASE      D_HEAR_C0MEM_BASE                           0xE000
+X_AUROCORRELATION_Size      256                                         0x100
+X_AUROCORRELATION_OUT_BASE  D_HEAR_C0MEM_BASE + X_AUROCORRELATION_Size  0xE100
+FIFO_A0_0_BASE              0x0                                         0x0
+FIFO_A0_0_SIZE              576                                         0x240
+FIFO_A0_0_BASE_PTR          0                                           0x0
+FIFO_A0_0_IOC_PTR           0                                           0x0
+FIFO_B0_0_BASE              0x0                                         0x0
+FIFO_B0_0_SIZE              640                                         0x280
+FIFO_B0_0_BASE_PTR          0                                           0x0
+FIFO_B0_0_IOC_PTR           WOLA_Ls + WOLA_R                            0x240
+X_ANALYSIS_FIFO_ADDR        D_HEAR_A0MEM_BASE + FIFO_A0_0_BASE          0xC000
+X_SYNTHESIS_FIFO_ADDR       D_HEAR_B0MEM_BASE + FIFO_B0_0_BASE          0xD000
+
+
+
+FIFO Configuration
+========================================================
+
+FIFO_A0_0:
+---------
+        Start:            0
+        Size:             576
+        Block Size:       64
+        Base Pointer:     0
+        IO Block Pointer: 0
+
+FIFO_B0_0:
+---------
+        Start:            0
+        Size:             640
+        Block Size:       64
+        Base Pointer:     0
+        IO Block Pointer: 576
+
+
+
+Microcode Module Configuration 
+========================================================
+
+AutoCorrelation_R: AutoCorrelation_A
+------------------------------------
+        K: 512
+        scalefactor: -14
+        start_lag: 0
+        final_lag: 255
+        input_addr: 0xC000
+        output_addr: 0xE100
+        input_addr_mode: 1
+        output_addr_mode: 1
+
+
+
+Function Chain Configuration 
+========================================================
+
+CMD0: function_chain0
+---------------------
+        AutoCorrelation_R(AutoCorrelation_A, 512, -14, 0, 255, 0xC000, 0xE100, 1, 1)
+        Event(0)
+
+CMD1: function_chain1
+---------------------
+        Event(1)
+
+CMD2: function_chain2
+---------------------
+        Event(2)
+
+
+
+Microcode Memory Usage
+========================================================
+
+Function Chain Microcode Size
+-----------------------------
+        function_chain0: 21
+        function_chain1: 1
+        function_chain2: 1
+
+Summary
+-------
+        Microcode Memory Size    = 27
+        Configuration Data Start = 0xBF98
+        Configuration Data Size  = 8
+
+Microcode Cycle Estimates 
+========================================================
+
+function_chain0 Cycle Estimate
+-------------------------------
+Total Minimum Cycle Count = 198924
+Total Maximum Cycle Count = 198924
+
+AutoCorrelation_R(AutoCorrelation_A) Cycle Count
+    Minimum = 198920
+    Maximum = 198920
+
+
+function_chain1 Cycle Estimate
+-------------------------------
+Total Minimum Cycle Count = 4
+Total Maximum Cycle Count = 4
+
+
+function_chain2 Cycle Estimate
+-------------------------------
+Total Minimum Cycle Count = 4
+Total Maximum Cycle Count = 4
+
+

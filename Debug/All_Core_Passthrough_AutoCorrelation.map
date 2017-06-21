@@ -1,0 +1,1324 @@
+Archive member included because of file (symbol)
+
+C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+                              ./app_init.o (SYSLIB_SetOperatingFrequency)
+
+Discarded input sections
+
+ .cfasm_segments
+                0x0000000000000000       0x6b ./CM3.o
+ .cfasm_segments
+                0x0000000000000000       0x16 ./app.o
+ .cfasm_segments
+                0x0000000000000000       0x1a ./app_init.o
+ .cfasm_segments
+                0x0000000000000000       0x35 ./app_isr.o
+ .cfasm_segments
+                0x0000000000000000      0x22f ./app_memory.o
+ .cfasm_segments
+                0x0000000000000000       0x46 ./feng.o
+ .cfasm_segments
+                0x0000000000000000      0x17f ./microcode.o
+ .cfasm_segments
+                0x0000000000000000       0x1c C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+mem0_8000_dbff   0x0000000000008000 0x0000000000005c00 xrw
+mem0_dfe0_dfff   0x000000000000dfe0 0x0000000000000020 xrw
+mem0_e000_efff   0x000000000000e000 0x0000000000001000 xrw
+mem0_f300_f312   0x000000000000f300 0x0000000000000013 xrw
+mem0_f800_f8bf   0x000000000000f800 0x00000000000000c0 xrw
+mem0_f900_f9ff   0x000000000000f900 0x0000000000000100 xrw
+mem0_4000_4fff   0x0000000000004000 0x0000000000001000 xrw
+mem0_5000_7fff   0x0000000000005000 0x0000000000003000 xrw
+mem1_0120_2fff   0x0000000001000120 0x0000000000002ee0 w
+mem1_4000_67ff   0x0000000001004000 0x0000000000002800 w
+mem1_8000_ffff   0x0000000001008000 0x0000000000008000 w
+mem2_0120_0fff   0x0000000002000120 0x0000000000000ee0 w
+mem2_c000_ffff   0x000000000200c000 0x0000000000004000 w
+mem3_0020_011f   0x0000000003000020 0x0000000000000100 w
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+
+.main           0x0000000000008000      0x360
+ *(.main)
+ .main          0x0000000000008000       0x6c ./app.o
+                0x0000000000008000                main
+
+.segEELIB
+ *(.segEELIB)
+
+.init_seg       0x000000000000806c      0x540
+ *(.init_seg)
+ .init_seg      0x000000000000806c       0xa8 ./app_init.o
+                0x000000000000806c                Initialize
+
+.seg_syslib     0x0000000000008114      0x3b8
+ *(.seg_syslib)
+ .seg_syslib    0x0000000000008114       0x77 C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+                0x0000000000008114                SYSLIB_Reset
+                0x0000000000008117                SYSLIB_Delay
+                0x0000000000008128                SYSLIB_DelayBase
+                0x0000000000008133                SYSLIB_WaitForSPIDone
+                0x0000000000008139                SYSLIB_SetOperatingFrequency
+                0x0000000000008146                SYSLIB_SetOperatingFrequency_Throttle
+                0x0000000000008159                SYSLIB_SoftPowerdownEnable
+                0x000000000000815f                SYSLIB_SoftPowerdownDisable
+                0x0000000000008167                SYSLIB_CalibrateADC
+
+.segMATHLIB
+ *(.segMATHLIB)
+
+.isr_seg        0x000000000000818b       0xa8
+ *(.isr_seg)
+ .isr_seg       0x000000000000818b       0x15 ./app_isr.o
+
+.int_vect_seg   0x000000000000dfe0      0x100
+ *(.int_vect_seg)
+ .int_vect_seg  0x000000000000dfe0       0x20 ./app_isr.o
+
+.MICROCODE0     0x000000000000e000       0x20
+ *(.MICROCODE0)
+ .MICROCODE0    0x000000000000e000        0x4 ./microcode.o
+
+.function_chain0_entry
+                0x000000000000e004        0x0
+ *(.function_chain0_entry)
+ .function_chain0_entry
+                0x000000000000e004        0x0 ./microcode.o
+
+.MICROCODE1     0x000000000000e004       0xc0
+ *(.MICROCODE1)
+ .MICROCODE1    0x000000000000e004       0x18 ./microcode.o
+
+.function_chain1_entry
+                0x000000000000e019        0x0
+ *(.function_chain1_entry)
+ .function_chain1_entry
+                0x000000000000e019        0x0 ./microcode.o
+
+.function_chain2_entry
+                0x000000000000e01a        0x0
+ *(.function_chain2_entry)
+ .function_chain2_entry
+                0x000000000000e01a        0x0 ./microcode.o
+
+.FilterEngine_CFGf304
+                0x000000000000f304       0x10
+ *(.FilterEngine_CFGf304)
+ .FilterEngine_CFGf304
+                0x000000000000f304        0x2 ./feng.o
+
+._SYS_FENG_COEFFICIENT_AREA1
+                0x000000000000f900       0x28
+ *(._SYS_FENG_COEFFICIENT_AREA1)
+ ._SYS_FENG_COEFFICIENT_AREA1
+                0x000000000000f900        0x5 ./app_memory.o
+
+._SYS_FENG_COEFFICIENT_AREA2
+                0x000000000000f905       0x28
+ *(._SYS_FENG_COEFFICIENT_AREA2)
+ ._SYS_FENG_COEFFICIENT_AREA2
+                0x000000000000f905        0x5 ./app_memory.o
+
+.FilterEngine_PGM
+                0x000000000000f9c0       0x10
+ *(.FilterEngine_PGM)
+ .FilterEngine_PGM
+                0x000000000000f9c0        0x2 ./feng.o
+
+.cm3_data_0x20000000
+                0x0000000000004000       0x10
+ *(.cm3_data_0x20000000)
+ .cm3_data_0x20000000
+                0x0000000000004000        0x2 ./CM3.o
+
+.cm3_prog_0x00000000
+                0x0000000000005000      0xc60
+ *(.cm3_prog_0x00000000)
+ .cm3_prog_0x00000000
+                0x0000000000005000      0x18c ./CM3.o
+
+.cm3_prog_0x00000630
+                0x000000000000518c       0x90
+ *(.cm3_prog_0x00000630)
+ .cm3_prog_0x00000630
+                0x000000000000518c       0x12 ./CM3.o
+
+.X_System_Memory_Reserved
+                0x0000000001000120       0x38
+ *(.X_System_Memory_Reserved)
+ .X_System_Memory_Reserved
+                0x0000000001000120        0x7 ./app_memory.o
+                0x0000000001000120                X_FIFO_0_DONE
+                0x0000000001000121                X_HEAR_FUNCTION_CHAIN0_DONE
+                0x0000000001000122                X_HEAR_FUNCTION_CHAIN1_DONE
+                0x0000000001000123                X_HEAR_FUNCTION_CHAIN2_DONE
+                0x0000000001000124                X_CM3_0_DONE
+                0x0000000001000125                X_SPI_DONE
+                0x0000000001000126                X_SPI_FLAG
+
+.X_System_Stack_Memory_Reserved
+                0x0000000001002f80      0x400
+ *(.X_System_Stack_Memory_Reserved)
+ .X_System_Stack_Memory_Reserved
+                0x0000000001002f80       0x80 ./app_memory.o
+                0x0000000001002f80                X_STACK_BOTTOM
+                0x0000000001003000                PROVIDE (__stack, .)
+
+.X_System_WOLA_Temp0_Memory_Reserved
+                0x0000000001004000      0x800
+ *(.X_System_WOLA_Temp0_Memory_Reserved)
+ .X_System_WOLA_Temp0_Memory_Reserved
+                0x0000000001004000      0x100 ./app_memory.o
+                0x0000000001004000                X_WOLA_TEMP0
+
+.X_System_Analysis_Results_Memory_Reserved
+                0x0000000001004100      0x800
+ *(.X_System_Analysis_Results_Memory_Reserved)
+ .X_System_Analysis_Results_Memory_Reserved
+                0x0000000001004100      0x100 ./app_memory.o
+                0x0000000001004100                X_ANALYSIS_RESULTS
+
+.X_System_WOLA_Temp1_Memory_Reserved
+                0x0000000001004400      0x800
+ *(.X_System_WOLA_Temp1_Memory_Reserved)
+ .X_System_WOLA_Temp1_Memory_Reserved
+                0x0000000001004400      0x100 ./app_memory.o
+                0x0000000001004400                X_WOLA_TEMP1
+
+.X_System_Gain_Table_Memory_Reserved
+                0x0000000001004800      0x800
+ *(.X_System_Gain_Table_Memory_Reserved)
+ .X_System_Gain_Table_Memory_Reserved
+                0x0000000001004800      0x100 ./app_memory.o
+                0x0000000001004800                X_GAIN_TABLE
+
+.MICROCODE_DATA0
+                0x000000000100bf98       0x40
+ *(.MICROCODE_DATA0)
+ .MICROCODE_DATA0
+                0x000000000100bf98        0x8 ./microcode.o
+
+.AutoCorrelation_A_output_addr
+                0x000000000100bf9a        0x0
+ *(.AutoCorrelation_A_output_addr)
+ .AutoCorrelation_A_output_addr
+                0x000000000100bf9a        0x0 ./microcode.o
+
+.AutoCorrelation_A_K
+                0x000000000100bf9e        0x0
+ *(.AutoCorrelation_A_K)
+ .AutoCorrelation_A_K
+                0x000000000100bf9e        0x0 ./microcode.o
+
+.AutoCorrelation_A_scalefactor
+                0x000000000100bf9f        0x0
+ *(.AutoCorrelation_A_scalefactor)
+ .AutoCorrelation_A_scalefactor
+                0x000000000100bf9f        0x0 ./microcode.o
+
+.MICROCODE_DATA2
+                0x000000000100bfa0      0x200
+ *(.MICROCODE_DATA2)
+ .MICROCODE_DATA2
+                0x000000000100bfa0       0x40 ./microcode.o
+
+.MICROCODE_DATA1
+                0x000000000100bfe0      0x100
+ *(.MICROCODE_DATA1)
+ .MICROCODE_DATA1
+                0x000000000100bfe0       0x20 ./microcode.o
+
+.X_HCT_FIFO_A0_0_Memory_Reserved
+                0x000000000100c000     0x1200
+ *(.X_HCT_FIFO_A0_0_Memory_Reserved)
+ .X_HCT_FIFO_A0_0_Memory_Reserved
+                0x000000000100c000      0x240 ./app_memory.o
+
+.X_HCT_FIFO_B0_0_Memory_Reserved
+                0x000000000100d000     0x1400
+ *(.X_HCT_FIFO_B0_0_Memory_Reserved)
+ .X_HCT_FIFO_B0_0_Memory_Reserved
+                0x000000000100d000      0x280 ./app_memory.o
+
+.Y_System_Memory_Reserved
+                0x0000000002000120        0x0
+ *(.Y_System_Memory_Reserved)
+ .Y_System_Memory_Reserved
+                0x0000000002000120        0x0 ./app_memory.o
+
+.XY_System_Memory_Reserved
+                0x0000000003000020        0x0
+ *(.XY_System_Memory_Reserved)
+ .XY_System_Memory_Reserved
+                0x0000000003000020        0x0 ./app_memory.o
+
+.cfasm_mem0_bss_ranges
+ *(.cfasm_mem0_bss_ranges)
+                0x0000000000000000                __cfasm_mem0_bss_ranges_start = 0x0
+                0x0000000000000000                __cfasm_mem0_bss_ranges_end = 0x0
+
+.cfasm_mem1_bss_ranges
+                0x0000000000000000       0x70
+ *(.cfasm_mem1_bss_ranges)
+ .cfasm_mem1_bss_ranges
+                0x0000000000000000        0xc ./app_memory.o
+ .cfasm_mem1_bss_ranges
+                0x0000000000000060        0x2 ./microcode.o
+                0x0000000000000000                __cfasm_mem1_bss_ranges_start = 0x0
+                0x0000000000000000                __cfasm_mem1_bss_ranges_end = 0x0
+
+.cfasm_mem2_bss_ranges
+ *(.cfasm_mem2_bss_ranges)
+                0x0000000000000000                __cfasm_mem2_bss_ranges_start = 0x0
+                0x0000000000000000                __cfasm_mem2_bss_ranges_end = 0x0
+
+.cfasm_mem3_bss_ranges
+ *(.cfasm_mem3_bss_ranges)
+                0x0000000000000000                __cfasm_mem3_bss_ranges_start = 0x0
+                0x0000000000000000                __cfasm_mem3_bss_ranges_end = 0x0
+
+.cfasm_segments
+                0x0000000000000000      0x504
+                0x0000000000000000        0x2 SHORT 0x1
+                0x0000000000000002        0x1 BYTE 0x5f
+                0x0000000000000003        0x1 BYTE 0x53
+                0x0000000000000004        0x1 BYTE 0x59
+                0x0000000000000005        0x1 BYTE 0x53
+                0x0000000000000006        0x1 BYTE 0x5f
+                0x0000000000000007        0x1 BYTE 0x46
+                0x0000000000000008        0x1 BYTE 0x45
+                0x0000000000000009        0x1 BYTE 0x4e
+                0x000000000000000a        0x1 BYTE 0x47
+                0x000000000000000b        0x1 BYTE 0x5f
+                0x000000000000000c        0x1 BYTE 0x43
+                0x000000000000000d        0x1 BYTE 0x4f
+                0x000000000000000e        0x1 BYTE 0x45
+                0x000000000000000f        0x1 BYTE 0x46
+                0x0000000000000010        0x1 BYTE 0x46
+                0x0000000000000011        0x1 BYTE 0x49
+                0x0000000000000012        0x1 BYTE 0x43
+                0x0000000000000013        0x1 BYTE 0x49
+                0x0000000000000014        0x1 BYTE 0x45
+                0x0000000000000015        0x1 BYTE 0x4e
+                0x0000000000000016        0x1 BYTE 0x54
+                0x0000000000000017        0x1 BYTE 0x5f
+                0x0000000000000018        0x1 BYTE 0x41
+                0x0000000000000019        0x1 BYTE 0x52
+                0x000000000000001a        0x1 BYTE 0x45
+                0x000000000000001b        0x1 BYTE 0x41
+                0x000000000000001c        0x1 BYTE 0x32
+                0x000000000000001d        0x1 BYTE 0x0
+                0x000000000000001e        0x4 LONG 0xffffffffffffffff
+                0x0000000000000022        0x4 LONG 0xf905
+                0x0000000000000026        0x4 LONG 0x1
+                0x000000000000002a        0x1 BYTE 0x0
+                0x000000000000002b        0x2 SHORT 0x20
+                0x000000000000002d        0x1 BYTE 0x46
+                0x000000000000002e        0x1 BYTE 0x69
+                0x000000000000002f        0x1 BYTE 0x6c
+                0x0000000000000030        0x1 BYTE 0x74
+                0x0000000000000031        0x1 BYTE 0x65
+                0x0000000000000032        0x1 BYTE 0x72
+                0x0000000000000033        0x1 BYTE 0x45
+                0x0000000000000034        0x1 BYTE 0x6e
+                0x0000000000000035        0x1 BYTE 0x67
+                0x0000000000000036        0x1 BYTE 0x69
+                0x0000000000000037        0x1 BYTE 0x6e
+                0x0000000000000038        0x1 BYTE 0x65
+                0x0000000000000039        0x1 BYTE 0x5f
+                0x000000000000003a        0x1 BYTE 0x43
+                0x000000000000003b        0x1 BYTE 0x46
+                0x000000000000003c        0x1 BYTE 0x47
+                0x000000000000003d        0x1 BYTE 0x66
+                0x000000000000003e        0x1 BYTE 0x33
+                0x000000000000003f        0x1 BYTE 0x30
+                0x0000000000000040        0x1 BYTE 0x34
+                0x0000000000000041        0x1 BYTE 0x0
+                0x0000000000000042        0x4 LONG 0xffffffffffffffff
+                0x0000000000000046        0x4 LONG 0xf304
+                0x000000000000004a        0x4 LONG 0x1
+                0x000000000000004e        0x1 BYTE 0x0
+                0x000000000000004f        0x2 SHORT 0x20
+                0x0000000000000051        0x1 BYTE 0x5f
+                0x0000000000000052        0x1 BYTE 0x53
+                0x0000000000000053        0x1 BYTE 0x59
+                0x0000000000000054        0x1 BYTE 0x53
+                0x0000000000000055        0x1 BYTE 0x5f
+                0x0000000000000056        0x1 BYTE 0x46
+                0x0000000000000057        0x1 BYTE 0x45
+                0x0000000000000058        0x1 BYTE 0x4e
+                0x0000000000000059        0x1 BYTE 0x47
+                0x000000000000005a        0x1 BYTE 0x5f
+                0x000000000000005b        0x1 BYTE 0x43
+                0x000000000000005c        0x1 BYTE 0x4f
+                0x000000000000005d        0x1 BYTE 0x45
+                0x000000000000005e        0x1 BYTE 0x46
+                0x000000000000005f        0x1 BYTE 0x46
+                0x0000000000000060        0x1 BYTE 0x49
+                0x0000000000000061        0x1 BYTE 0x43
+                0x0000000000000062        0x1 BYTE 0x49
+                0x0000000000000063        0x1 BYTE 0x45
+                0x0000000000000064        0x1 BYTE 0x4e
+                0x0000000000000065        0x1 BYTE 0x54
+                0x0000000000000066        0x1 BYTE 0x5f
+                0x0000000000000067        0x1 BYTE 0x41
+                0x0000000000000068        0x1 BYTE 0x52
+                0x0000000000000069        0x1 BYTE 0x45
+                0x000000000000006a        0x1 BYTE 0x41
+                0x000000000000006b        0x1 BYTE 0x31
+                0x000000000000006c        0x1 BYTE 0x0
+                0x000000000000006d        0x4 LONG 0xffffffffffffffff
+                0x0000000000000071        0x4 LONG 0xf900
+                0x0000000000000075        0x4 LONG 0x1
+                0x0000000000000079        0x1 BYTE 0x0
+                0x000000000000007a        0x2 SHORT 0x20
+                0x000000000000007c        0x1 BYTE 0x58
+                0x000000000000007d        0x1 BYTE 0x5f
+                0x000000000000007e        0x1 BYTE 0x48
+                0x000000000000007f        0x1 BYTE 0x43
+                0x0000000000000080        0x1 BYTE 0x54
+                0x0000000000000081        0x1 BYTE 0x5f
+                0x0000000000000082        0x1 BYTE 0x46
+                0x0000000000000083        0x1 BYTE 0x49
+                0x0000000000000084        0x1 BYTE 0x46
+                0x0000000000000085        0x1 BYTE 0x4f
+                0x0000000000000086        0x1 BYTE 0x5f
+                0x0000000000000087        0x1 BYTE 0x41
+                0x0000000000000088        0x1 BYTE 0x30
+                0x0000000000000089        0x1 BYTE 0x5f
+                0x000000000000008a        0x1 BYTE 0x30
+                0x000000000000008b        0x1 BYTE 0x5f
+                0x000000000000008c        0x1 BYTE 0x4d
+                0x000000000000008d        0x1 BYTE 0x65
+                0x000000000000008e        0x1 BYTE 0x6d
+                0x000000000000008f        0x1 BYTE 0x6f
+                0x0000000000000090        0x1 BYTE 0x72
+                0x0000000000000091        0x1 BYTE 0x79
+                0x0000000000000092        0x1 BYTE 0x5f
+                0x0000000000000093        0x1 BYTE 0x52
+                0x0000000000000094        0x1 BYTE 0x65
+                0x0000000000000095        0x1 BYTE 0x73
+                0x0000000000000096        0x1 BYTE 0x65
+                0x0000000000000097        0x1 BYTE 0x72
+                0x0000000000000098        0x1 BYTE 0x76
+                0x0000000000000099        0x1 BYTE 0x65
+                0x000000000000009a        0x1 BYTE 0x64
+                0x000000000000009b        0x1 BYTE 0x0
+                0x000000000000009c        0x4 LONG 0xffffffffffffffff
+                0x00000000000000a0        0x4 LONG 0xc000
+                0x00000000000000a4        0x4 LONG 0x1
+                0x00000000000000a8        0x1 BYTE 0x1
+                0x00000000000000a9        0x2 SHORT 0x18
+                0x00000000000000ab        0x1 BYTE 0x58
+                0x00000000000000ac        0x1 BYTE 0x5f
+                0x00000000000000ad        0x1 BYTE 0x53
+                0x00000000000000ae        0x1 BYTE 0x79
+                0x00000000000000af        0x1 BYTE 0x73
+                0x00000000000000b0        0x1 BYTE 0x74
+                0x00000000000000b1        0x1 BYTE 0x65
+                0x00000000000000b2        0x1 BYTE 0x6d
+                0x00000000000000b3        0x1 BYTE 0x5f
+                0x00000000000000b4        0x1 BYTE 0x41
+                0x00000000000000b5        0x1 BYTE 0x6e
+                0x00000000000000b6        0x1 BYTE 0x61
+                0x00000000000000b7        0x1 BYTE 0x6c
+                0x00000000000000b8        0x1 BYTE 0x79
+                0x00000000000000b9        0x1 BYTE 0x73
+                0x00000000000000ba        0x1 BYTE 0x69
+                0x00000000000000bb        0x1 BYTE 0x73
+                0x00000000000000bc        0x1 BYTE 0x5f
+                0x00000000000000bd        0x1 BYTE 0x52
+                0x00000000000000be        0x1 BYTE 0x65
+                0x00000000000000bf        0x1 BYTE 0x73
+                0x00000000000000c0        0x1 BYTE 0x75
+                0x00000000000000c1        0x1 BYTE 0x6c
+                0x00000000000000c2        0x1 BYTE 0x74
+                0x00000000000000c3        0x1 BYTE 0x73
+                0x00000000000000c4        0x1 BYTE 0x5f
+                0x00000000000000c5        0x1 BYTE 0x4d
+                0x00000000000000c6        0x1 BYTE 0x65
+                0x00000000000000c7        0x1 BYTE 0x6d
+                0x00000000000000c8        0x1 BYTE 0x6f
+                0x00000000000000c9        0x1 BYTE 0x72
+                0x00000000000000ca        0x1 BYTE 0x79
+                0x00000000000000cb        0x1 BYTE 0x5f
+                0x00000000000000cc        0x1 BYTE 0x52
+                0x00000000000000cd        0x1 BYTE 0x65
+                0x00000000000000ce        0x1 BYTE 0x73
+                0x00000000000000cf        0x1 BYTE 0x65
+                0x00000000000000d0        0x1 BYTE 0x72
+                0x00000000000000d1        0x1 BYTE 0x76
+                0x00000000000000d2        0x1 BYTE 0x65
+                0x00000000000000d3        0x1 BYTE 0x64
+                0x00000000000000d4        0x1 BYTE 0x0
+                0x00000000000000d5        0x4 LONG 0xffffffffffffffff
+                0x00000000000000d9        0x4 LONG 0x4100
+                0x00000000000000dd        0x4 LONG 0x1
+                0x00000000000000e1        0x1 BYTE 0x1
+                0x00000000000000e2        0x2 SHORT 0x18
+                0x00000000000000e4        0x1 BYTE 0x66
+                0x00000000000000e5        0x1 BYTE 0x75
+                0x00000000000000e6        0x1 BYTE 0x6e
+                0x00000000000000e7        0x1 BYTE 0x63
+                0x00000000000000e8        0x1 BYTE 0x74
+                0x00000000000000e9        0x1 BYTE 0x69
+                0x00000000000000ea        0x1 BYTE 0x6f
+                0x00000000000000eb        0x1 BYTE 0x6e
+                0x00000000000000ec        0x1 BYTE 0x5f
+                0x00000000000000ed        0x1 BYTE 0x63
+                0x00000000000000ee        0x1 BYTE 0x68
+                0x00000000000000ef        0x1 BYTE 0x61
+                0x00000000000000f0        0x1 BYTE 0x69
+                0x00000000000000f1        0x1 BYTE 0x6e
+                0x00000000000000f2        0x1 BYTE 0x30
+                0x00000000000000f3        0x1 BYTE 0x5f
+                0x00000000000000f4        0x1 BYTE 0x65
+                0x00000000000000f5        0x1 BYTE 0x6e
+                0x00000000000000f6        0x1 BYTE 0x74
+                0x00000000000000f7        0x1 BYTE 0x72
+                0x00000000000000f8        0x1 BYTE 0x79
+                0x00000000000000f9        0x1 BYTE 0x0
+                0x00000000000000fa        0x4 LONG 0xffffffffffffffff
+                0x00000000000000fe        0x4 LONG 0xe004
+                0x0000000000000102        0x4 LONG 0x1
+                0x0000000000000106        0x1 BYTE 0x0
+                0x0000000000000107        0x2 SHORT 0x20
+                0x0000000000000109        0x1 BYTE 0x66
+                0x000000000000010a        0x1 BYTE 0x75
+                0x000000000000010b        0x1 BYTE 0x6e
+                0x000000000000010c        0x1 BYTE 0x63
+                0x000000000000010d        0x1 BYTE 0x74
+                0x000000000000010e        0x1 BYTE 0x69
+                0x000000000000010f        0x1 BYTE 0x6f
+                0x0000000000000110        0x1 BYTE 0x6e
+                0x0000000000000111        0x1 BYTE 0x5f
+                0x0000000000000112        0x1 BYTE 0x63
+                0x0000000000000113        0x1 BYTE 0x68
+                0x0000000000000114        0x1 BYTE 0x61
+                0x0000000000000115        0x1 BYTE 0x69
+                0x0000000000000116        0x1 BYTE 0x6e
+                0x0000000000000117        0x1 BYTE 0x32
+                0x0000000000000118        0x1 BYTE 0x5f
+                0x0000000000000119        0x1 BYTE 0x65
+                0x000000000000011a        0x1 BYTE 0x6e
+                0x000000000000011b        0x1 BYTE 0x74
+                0x000000000000011c        0x1 BYTE 0x72
+                0x000000000000011d        0x1 BYTE 0x79
+                0x000000000000011e        0x1 BYTE 0x0
+                0x000000000000011f        0x4 LONG 0xffffffffffffffff
+                0x0000000000000123        0x4 LONG 0xe01a
+                0x0000000000000127        0x4 LONG 0x1
+                0x000000000000012b        0x1 BYTE 0x0
+                0x000000000000012c        0x2 SHORT 0x20
+                0x000000000000012e        0x1 BYTE 0x58
+                0x000000000000012f        0x1 BYTE 0x5f
+                0x0000000000000130        0x1 BYTE 0x53
+                0x0000000000000131        0x1 BYTE 0x79
+                0x0000000000000132        0x1 BYTE 0x73
+                0x0000000000000133        0x1 BYTE 0x74
+                0x0000000000000134        0x1 BYTE 0x65
+                0x0000000000000135        0x1 BYTE 0x6d
+                0x0000000000000136        0x1 BYTE 0x5f
+                0x0000000000000137        0x1 BYTE 0x57
+                0x0000000000000138        0x1 BYTE 0x4f
+                0x0000000000000139        0x1 BYTE 0x4c
+                0x000000000000013a        0x1 BYTE 0x41
+                0x000000000000013b        0x1 BYTE 0x5f
+                0x000000000000013c        0x1 BYTE 0x54
+                0x000000000000013d        0x1 BYTE 0x65
+                0x000000000000013e        0x1 BYTE 0x6d
+                0x000000000000013f        0x1 BYTE 0x70
+                0x0000000000000140        0x1 BYTE 0x30
+                0x0000000000000141        0x1 BYTE 0x5f
+                0x0000000000000142        0x1 BYTE 0x4d
+                0x0000000000000143        0x1 BYTE 0x65
+                0x0000000000000144        0x1 BYTE 0x6d
+                0x0000000000000145        0x1 BYTE 0x6f
+                0x0000000000000146        0x1 BYTE 0x72
+                0x0000000000000147        0x1 BYTE 0x79
+                0x0000000000000148        0x1 BYTE 0x5f
+                0x0000000000000149        0x1 BYTE 0x52
+                0x000000000000014a        0x1 BYTE 0x65
+                0x000000000000014b        0x1 BYTE 0x73
+                0x000000000000014c        0x1 BYTE 0x65
+                0x000000000000014d        0x1 BYTE 0x72
+                0x000000000000014e        0x1 BYTE 0x76
+                0x000000000000014f        0x1 BYTE 0x65
+                0x0000000000000150        0x1 BYTE 0x64
+                0x0000000000000151        0x1 BYTE 0x0
+                0x0000000000000152        0x4 LONG 0xffffffffffffffff
+                0x0000000000000156        0x4 LONG 0x4000
+                0x000000000000015a        0x4 LONG 0x1
+                0x000000000000015e        0x1 BYTE 0x1
+                0x000000000000015f        0x2 SHORT 0x18
+                0x0000000000000161        0x1 BYTE 0x58
+                0x0000000000000162        0x1 BYTE 0x5f
+                0x0000000000000163        0x1 BYTE 0x53
+                0x0000000000000164        0x1 BYTE 0x79
+                0x0000000000000165        0x1 BYTE 0x73
+                0x0000000000000166        0x1 BYTE 0x74
+                0x0000000000000167        0x1 BYTE 0x65
+                0x0000000000000168        0x1 BYTE 0x6d
+                0x0000000000000169        0x1 BYTE 0x5f
+                0x000000000000016a        0x1 BYTE 0x4d
+                0x000000000000016b        0x1 BYTE 0x65
+                0x000000000000016c        0x1 BYTE 0x6d
+                0x000000000000016d        0x1 BYTE 0x6f
+                0x000000000000016e        0x1 BYTE 0x72
+                0x000000000000016f        0x1 BYTE 0x79
+                0x0000000000000170        0x1 BYTE 0x5f
+                0x0000000000000171        0x1 BYTE 0x52
+                0x0000000000000172        0x1 BYTE 0x65
+                0x0000000000000173        0x1 BYTE 0x73
+                0x0000000000000174        0x1 BYTE 0x65
+                0x0000000000000175        0x1 BYTE 0x72
+                0x0000000000000176        0x1 BYTE 0x76
+                0x0000000000000177        0x1 BYTE 0x65
+                0x0000000000000178        0x1 BYTE 0x64
+                0x0000000000000179        0x1 BYTE 0x0
+                0x000000000000017a        0x4 LONG 0xffffffffffffffff
+                0x000000000000017e        0x4 LONG 0xffffffffffffffff
+                0x0000000000000182        0x4 LONG 0x1
+                0x0000000000000186        0x1 BYTE 0x1
+                0x0000000000000187        0x2 SHORT 0x18
+                0x0000000000000189        0x1 BYTE 0x73
+                0x000000000000018a        0x1 BYTE 0x65
+                0x000000000000018b        0x1 BYTE 0x67
+                0x000000000000018c        0x1 BYTE 0x5f
+                0x000000000000018d        0x1 BYTE 0x73
+                0x000000000000018e        0x1 BYTE 0x79
+                0x000000000000018f        0x1 BYTE 0x73
+                0x0000000000000190        0x1 BYTE 0x6c
+                0x0000000000000191        0x1 BYTE 0x69
+                0x0000000000000192        0x1 BYTE 0x62
+                0x0000000000000193        0x1 BYTE 0x0
+                0x0000000000000194        0x4 LONG 0xffffffffffffffff
+                0x0000000000000198        0x4 LONG 0xffffffffffffffff
+                0x000000000000019c        0x4 LONG 0x1
+                0x00000000000001a0        0x1 BYTE 0x0
+                0x00000000000001a1        0x2 SHORT 0x20
+                0x00000000000001a3        0x1 BYTE 0x59
+                0x00000000000001a4        0x1 BYTE 0x5f
+                0x00000000000001a5        0x1 BYTE 0x53
+                0x00000000000001a6        0x1 BYTE 0x79
+                0x00000000000001a7        0x1 BYTE 0x73
+                0x00000000000001a8        0x1 BYTE 0x74
+                0x00000000000001a9        0x1 BYTE 0x65
+                0x00000000000001aa        0x1 BYTE 0x6d
+                0x00000000000001ab        0x1 BYTE 0x5f
+                0x00000000000001ac        0x1 BYTE 0x4d
+                0x00000000000001ad        0x1 BYTE 0x65
+                0x00000000000001ae        0x1 BYTE 0x6d
+                0x00000000000001af        0x1 BYTE 0x6f
+                0x00000000000001b0        0x1 BYTE 0x72
+                0x00000000000001b1        0x1 BYTE 0x79
+                0x00000000000001b2        0x1 BYTE 0x5f
+                0x00000000000001b3        0x1 BYTE 0x52
+                0x00000000000001b4        0x1 BYTE 0x65
+                0x00000000000001b5        0x1 BYTE 0x73
+                0x00000000000001b6        0x1 BYTE 0x65
+                0x00000000000001b7        0x1 BYTE 0x72
+                0x00000000000001b8        0x1 BYTE 0x76
+                0x00000000000001b9        0x1 BYTE 0x65
+                0x00000000000001ba        0x1 BYTE 0x64
+                0x00000000000001bb        0x1 BYTE 0x0
+                0x00000000000001bc        0x4 LONG 0xffffffffffffffff
+                0x00000000000001c0        0x4 LONG 0xffffffffffffffff
+                0x00000000000001c4        0x4 LONG 0x1
+                0x00000000000001c8        0x1 BYTE 0x2
+                0x00000000000001c9        0x2 SHORT 0x18
+                0x00000000000001cb        0x1 BYTE 0x4d
+                0x00000000000001cc        0x1 BYTE 0x49
+                0x00000000000001cd        0x1 BYTE 0x43
+                0x00000000000001ce        0x1 BYTE 0x52
+                0x00000000000001cf        0x1 BYTE 0x4f
+                0x00000000000001d0        0x1 BYTE 0x43
+                0x00000000000001d1        0x1 BYTE 0x4f
+                0x00000000000001d2        0x1 BYTE 0x44
+                0x00000000000001d3        0x1 BYTE 0x45
+                0x00000000000001d4        0x1 BYTE 0x30
+                0x00000000000001d5        0x1 BYTE 0x0
+                0x00000000000001d6        0x4 LONG 0xffffffffffffffff
+                0x00000000000001da        0x4 LONG 0xe000
+                0x00000000000001de        0x4 LONG 0x1
+                0x00000000000001e2        0x1 BYTE 0x0
+                0x00000000000001e3        0x2 SHORT 0x20
+                0x00000000000001e5        0x1 BYTE 0x73
+                0x00000000000001e6        0x1 BYTE 0x65
+                0x00000000000001e7        0x1 BYTE 0x67
+                0x00000000000001e8        0x1 BYTE 0x4d
+                0x00000000000001e9        0x1 BYTE 0x41
+                0x00000000000001ea        0x1 BYTE 0x54
+                0x00000000000001eb        0x1 BYTE 0x48
+                0x00000000000001ec        0x1 BYTE 0x4c
+                0x00000000000001ed        0x1 BYTE 0x49
+                0x00000000000001ee        0x1 BYTE 0x42
+                0x00000000000001ef        0x1 BYTE 0x0
+                0x00000000000001f0        0x4 LONG 0xffffffffffffffff
+                0x00000000000001f4        0x4 LONG 0xffffffffffffffff
+                0x00000000000001f8        0x4 LONG 0x1
+                0x00000000000001fc        0x1 BYTE 0x0
+                0x00000000000001fd        0x2 SHORT 0x20
+                0x00000000000001ff        0x1 BYTE 0x41
+                0x0000000000000200        0x1 BYTE 0x75
+                0x0000000000000201        0x1 BYTE 0x74
+                0x0000000000000202        0x1 BYTE 0x6f
+                0x0000000000000203        0x1 BYTE 0x43
+                0x0000000000000204        0x1 BYTE 0x6f
+                0x0000000000000205        0x1 BYTE 0x72
+                0x0000000000000206        0x1 BYTE 0x72
+                0x0000000000000207        0x1 BYTE 0x65
+                0x0000000000000208        0x1 BYTE 0x6c
+                0x0000000000000209        0x1 BYTE 0x61
+                0x000000000000020a        0x1 BYTE 0x74
+                0x000000000000020b        0x1 BYTE 0x69
+                0x000000000000020c        0x1 BYTE 0x6f
+                0x000000000000020d        0x1 BYTE 0x6e
+                0x000000000000020e        0x1 BYTE 0x5f
+                0x000000000000020f        0x1 BYTE 0x41
+                0x0000000000000210        0x1 BYTE 0x5f
+                0x0000000000000211        0x1 BYTE 0x73
+                0x0000000000000212        0x1 BYTE 0x63
+                0x0000000000000213        0x1 BYTE 0x61
+                0x0000000000000214        0x1 BYTE 0x6c
+                0x0000000000000215        0x1 BYTE 0x65
+                0x0000000000000216        0x1 BYTE 0x66
+                0x0000000000000217        0x1 BYTE 0x61
+                0x0000000000000218        0x1 BYTE 0x63
+                0x0000000000000219        0x1 BYTE 0x74
+                0x000000000000021a        0x1 BYTE 0x6f
+                0x000000000000021b        0x1 BYTE 0x72
+                0x000000000000021c        0x1 BYTE 0x0
+                0x000000000000021d        0x4 LONG 0xffffffffffffffff
+                0x0000000000000221        0x4 LONG 0xbf9f
+                0x0000000000000225        0x4 LONG 0x1
+                0x0000000000000229        0x1 BYTE 0x1
+                0x000000000000022a        0x2 SHORT 0x18
+                0x000000000000022c        0x1 BYTE 0x69
+                0x000000000000022d        0x1 BYTE 0x6e
+                0x000000000000022e        0x1 BYTE 0x74
+                0x000000000000022f        0x1 BYTE 0x5f
+                0x0000000000000230        0x1 BYTE 0x76
+                0x0000000000000231        0x1 BYTE 0x65
+                0x0000000000000232        0x1 BYTE 0x63
+                0x0000000000000233        0x1 BYTE 0x74
+                0x0000000000000234        0x1 BYTE 0x5f
+                0x0000000000000235        0x1 BYTE 0x73
+                0x0000000000000236        0x1 BYTE 0x65
+                0x0000000000000237        0x1 BYTE 0x67
+                0x0000000000000238        0x1 BYTE 0x0
+                0x0000000000000239        0x4 LONG 0xffffffffffffffff
+                0x000000000000023d        0x4 LONG 0xdfe0
+                0x0000000000000241        0x4 LONG 0x1
+                0x0000000000000245        0x1 BYTE 0x0
+                0x0000000000000246        0x2 SHORT 0x20
+                0x0000000000000248        0x1 BYTE 0x58
+                0x0000000000000249        0x1 BYTE 0x5f
+                0x000000000000024a        0x1 BYTE 0x48
+                0x000000000000024b        0x1 BYTE 0x43
+                0x000000000000024c        0x1 BYTE 0x54
+                0x000000000000024d        0x1 BYTE 0x5f
+                0x000000000000024e        0x1 BYTE 0x46
+                0x000000000000024f        0x1 BYTE 0x49
+                0x0000000000000250        0x1 BYTE 0x46
+                0x0000000000000251        0x1 BYTE 0x4f
+                0x0000000000000252        0x1 BYTE 0x5f
+                0x0000000000000253        0x1 BYTE 0x42
+                0x0000000000000254        0x1 BYTE 0x30
+                0x0000000000000255        0x1 BYTE 0x5f
+                0x0000000000000256        0x1 BYTE 0x30
+                0x0000000000000257        0x1 BYTE 0x5f
+                0x0000000000000258        0x1 BYTE 0x4d
+                0x0000000000000259        0x1 BYTE 0x65
+                0x000000000000025a        0x1 BYTE 0x6d
+                0x000000000000025b        0x1 BYTE 0x6f
+                0x000000000000025c        0x1 BYTE 0x72
+                0x000000000000025d        0x1 BYTE 0x79
+                0x000000000000025e        0x1 BYTE 0x5f
+                0x000000000000025f        0x1 BYTE 0x52
+                0x0000000000000260        0x1 BYTE 0x65
+                0x0000000000000261        0x1 BYTE 0x73
+                0x0000000000000262        0x1 BYTE 0x65
+                0x0000000000000263        0x1 BYTE 0x72
+                0x0000000000000264        0x1 BYTE 0x76
+                0x0000000000000265        0x1 BYTE 0x65
+                0x0000000000000266        0x1 BYTE 0x64
+                0x0000000000000267        0x1 BYTE 0x0
+                0x0000000000000268        0x4 LONG 0xffffffffffffffff
+                0x000000000000026c        0x4 LONG 0xd000
+                0x0000000000000270        0x4 LONG 0x1
+                0x0000000000000274        0x1 BYTE 0x1
+                0x0000000000000275        0x2 SHORT 0x18
+                0x0000000000000277        0x1 BYTE 0x41
+                0x0000000000000278        0x1 BYTE 0x75
+                0x0000000000000279        0x1 BYTE 0x74
+                0x000000000000027a        0x1 BYTE 0x6f
+                0x000000000000027b        0x1 BYTE 0x43
+                0x000000000000027c        0x1 BYTE 0x6f
+                0x000000000000027d        0x1 BYTE 0x72
+                0x000000000000027e        0x1 BYTE 0x72
+                0x000000000000027f        0x1 BYTE 0x65
+                0x0000000000000280        0x1 BYTE 0x6c
+                0x0000000000000281        0x1 BYTE 0x61
+                0x0000000000000282        0x1 BYTE 0x74
+                0x0000000000000283        0x1 BYTE 0x69
+                0x0000000000000284        0x1 BYTE 0x6f
+                0x0000000000000285        0x1 BYTE 0x6e
+                0x0000000000000286        0x1 BYTE 0x5f
+                0x0000000000000287        0x1 BYTE 0x41
+                0x0000000000000288        0x1 BYTE 0x5f
+                0x0000000000000289        0x1 BYTE 0x4b
+                0x000000000000028a        0x1 BYTE 0x0
+                0x000000000000028b        0x4 LONG 0xffffffffffffffff
+                0x000000000000028f        0x4 LONG 0xbf9e
+                0x0000000000000293        0x4 LONG 0x1
+                0x0000000000000297        0x1 BYTE 0x1
+                0x0000000000000298        0x2 SHORT 0x18
+                0x000000000000029a        0x1 BYTE 0x58
+                0x000000000000029b        0x1 BYTE 0x5f
+                0x000000000000029c        0x1 BYTE 0x53
+                0x000000000000029d        0x1 BYTE 0x79
+                0x000000000000029e        0x1 BYTE 0x73
+                0x000000000000029f        0x1 BYTE 0x74
+                0x00000000000002a0        0x1 BYTE 0x65
+                0x00000000000002a1        0x1 BYTE 0x6d
+                0x00000000000002a2        0x1 BYTE 0x5f
+                0x00000000000002a3        0x1 BYTE 0x47
+                0x00000000000002a4        0x1 BYTE 0x61
+                0x00000000000002a5        0x1 BYTE 0x69
+                0x00000000000002a6        0x1 BYTE 0x6e
+                0x00000000000002a7        0x1 BYTE 0x5f
+                0x00000000000002a8        0x1 BYTE 0x54
+                0x00000000000002a9        0x1 BYTE 0x61
+                0x00000000000002aa        0x1 BYTE 0x62
+                0x00000000000002ab        0x1 BYTE 0x6c
+                0x00000000000002ac        0x1 BYTE 0x65
+                0x00000000000002ad        0x1 BYTE 0x5f
+                0x00000000000002ae        0x1 BYTE 0x4d
+                0x00000000000002af        0x1 BYTE 0x65
+                0x00000000000002b0        0x1 BYTE 0x6d
+                0x00000000000002b1        0x1 BYTE 0x6f
+                0x00000000000002b2        0x1 BYTE 0x72
+                0x00000000000002b3        0x1 BYTE 0x79
+                0x00000000000002b4        0x1 BYTE 0x5f
+                0x00000000000002b5        0x1 BYTE 0x52
+                0x00000000000002b6        0x1 BYTE 0x65
+                0x00000000000002b7        0x1 BYTE 0x73
+                0x00000000000002b8        0x1 BYTE 0x65
+                0x00000000000002b9        0x1 BYTE 0x72
+                0x00000000000002ba        0x1 BYTE 0x76
+                0x00000000000002bb        0x1 BYTE 0x65
+                0x00000000000002bc        0x1 BYTE 0x64
+                0x00000000000002bd        0x1 BYTE 0x0
+                0x00000000000002be        0x4 LONG 0xffffffffffffffff
+                0x00000000000002c2        0x4 LONG 0x4800
+                0x00000000000002c6        0x4 LONG 0x1
+                0x00000000000002ca        0x1 BYTE 0x1
+                0x00000000000002cb        0x2 SHORT 0x18
+                0x00000000000002cd        0x1 BYTE 0x66
+                0x00000000000002ce        0x1 BYTE 0x75
+                0x00000000000002cf        0x1 BYTE 0x6e
+                0x00000000000002d0        0x1 BYTE 0x63
+                0x00000000000002d1        0x1 BYTE 0x74
+                0x00000000000002d2        0x1 BYTE 0x69
+                0x00000000000002d3        0x1 BYTE 0x6f
+                0x00000000000002d4        0x1 BYTE 0x6e
+                0x00000000000002d5        0x1 BYTE 0x5f
+                0x00000000000002d6        0x1 BYTE 0x63
+                0x00000000000002d7        0x1 BYTE 0x68
+                0x00000000000002d8        0x1 BYTE 0x61
+                0x00000000000002d9        0x1 BYTE 0x69
+                0x00000000000002da        0x1 BYTE 0x6e
+                0x00000000000002db        0x1 BYTE 0x31
+                0x00000000000002dc        0x1 BYTE 0x5f
+                0x00000000000002dd        0x1 BYTE 0x65
+                0x00000000000002de        0x1 BYTE 0x6e
+                0x00000000000002df        0x1 BYTE 0x74
+                0x00000000000002e0        0x1 BYTE 0x72
+                0x00000000000002e1        0x1 BYTE 0x79
+                0x00000000000002e2        0x1 BYTE 0x0
+                0x00000000000002e3        0x4 LONG 0xffffffffffffffff
+                0x00000000000002e7        0x4 LONG 0xe019
+                0x00000000000002eb        0x4 LONG 0x1
+                0x00000000000002ef        0x1 BYTE 0x0
+                0x00000000000002f0        0x2 SHORT 0x20
+                0x00000000000002f2        0x1 BYTE 0x6d
+                0x00000000000002f3        0x1 BYTE 0x61
+                0x00000000000002f4        0x1 BYTE 0x69
+                0x00000000000002f5        0x1 BYTE 0x6e
+                0x00000000000002f6        0x1 BYTE 0x0
+                0x00000000000002f7        0x4 LONG 0xffffffffffffffff
+                0x00000000000002fb        0x4 LONG 0x8000
+                0x00000000000002ff        0x4 LONG 0x1
+                0x0000000000000303        0x1 BYTE 0x0
+                0x0000000000000304        0x2 SHORT 0x20
+                0x0000000000000306        0x1 BYTE 0x4d
+                0x0000000000000307        0x1 BYTE 0x49
+                0x0000000000000308        0x1 BYTE 0x43
+                0x0000000000000309        0x1 BYTE 0x52
+                0x000000000000030a        0x1 BYTE 0x4f
+                0x000000000000030b        0x1 BYTE 0x43
+                0x000000000000030c        0x1 BYTE 0x4f
+                0x000000000000030d        0x1 BYTE 0x44
+                0x000000000000030e        0x1 BYTE 0x45
+                0x000000000000030f        0x1 BYTE 0x5f
+                0x0000000000000310        0x1 BYTE 0x44
+                0x0000000000000311        0x1 BYTE 0x41
+                0x0000000000000312        0x1 BYTE 0x54
+                0x0000000000000313        0x1 BYTE 0x41
+                0x0000000000000314        0x1 BYTE 0x31
+                0x0000000000000315        0x1 BYTE 0x0
+                0x0000000000000316        0x4 LONG 0xffffffffffffffff
+                0x000000000000031a        0x4 LONG 0xbfe0
+                0x000000000000031e        0x4 LONG 0x1
+                0x0000000000000322        0x1 BYTE 0x1
+                0x0000000000000323        0x2 SHORT 0x18
+                0x0000000000000325        0x1 BYTE 0x4d
+                0x0000000000000326        0x1 BYTE 0x49
+                0x0000000000000327        0x1 BYTE 0x43
+                0x0000000000000328        0x1 BYTE 0x52
+                0x0000000000000329        0x1 BYTE 0x4f
+                0x000000000000032a        0x1 BYTE 0x43
+                0x000000000000032b        0x1 BYTE 0x4f
+                0x000000000000032c        0x1 BYTE 0x44
+                0x000000000000032d        0x1 BYTE 0x45
+                0x000000000000032e        0x1 BYTE 0x5f
+                0x000000000000032f        0x1 BYTE 0x44
+                0x0000000000000330        0x1 BYTE 0x41
+                0x0000000000000331        0x1 BYTE 0x54
+                0x0000000000000332        0x1 BYTE 0x41
+                0x0000000000000333        0x1 BYTE 0x30
+                0x0000000000000334        0x1 BYTE 0x0
+                0x0000000000000335        0x4 LONG 0xffffffffffffffff
+                0x0000000000000339        0x4 LONG 0xbf98
+                0x000000000000033d        0x4 LONG 0x1
+                0x0000000000000341        0x1 BYTE 0x1
+                0x0000000000000342        0x2 SHORT 0x18
+                0x0000000000000344        0x1 BYTE 0x4d
+                0x0000000000000345        0x1 BYTE 0x49
+                0x0000000000000346        0x1 BYTE 0x43
+                0x0000000000000347        0x1 BYTE 0x52
+                0x0000000000000348        0x1 BYTE 0x4f
+                0x0000000000000349        0x1 BYTE 0x43
+                0x000000000000034a        0x1 BYTE 0x4f
+                0x000000000000034b        0x1 BYTE 0x44
+                0x000000000000034c        0x1 BYTE 0x45
+                0x000000000000034d        0x1 BYTE 0x5f
+                0x000000000000034e        0x1 BYTE 0x44
+                0x000000000000034f        0x1 BYTE 0x41
+                0x0000000000000350        0x1 BYTE 0x54
+                0x0000000000000351        0x1 BYTE 0x41
+                0x0000000000000352        0x1 BYTE 0x32
+                0x0000000000000353        0x1 BYTE 0x0
+                0x0000000000000354        0x4 LONG 0xffffffffffffffff
+                0x0000000000000358        0x4 LONG 0xbfa0
+                0x000000000000035c        0x4 LONG 0x1
+                0x0000000000000360        0x1 BYTE 0x1
+                0x0000000000000361        0x2 SHORT 0x18
+                0x0000000000000363        0x1 BYTE 0x63
+                0x0000000000000364        0x1 BYTE 0x6d
+                0x0000000000000365        0x1 BYTE 0x33
+                0x0000000000000366        0x1 BYTE 0x5f
+                0x0000000000000367        0x1 BYTE 0x70
+                0x0000000000000368        0x1 BYTE 0x72
+                0x0000000000000369        0x1 BYTE 0x6f
+                0x000000000000036a        0x1 BYTE 0x67
+                0x000000000000036b        0x1 BYTE 0x5f
+                0x000000000000036c        0x1 BYTE 0x30
+                0x000000000000036d        0x1 BYTE 0x78
+                0x000000000000036e        0x1 BYTE 0x30
+                0x000000000000036f        0x1 BYTE 0x30
+                0x0000000000000370        0x1 BYTE 0x30
+                0x0000000000000371        0x1 BYTE 0x30
+                0x0000000000000372        0x1 BYTE 0x30
+                0x0000000000000373        0x1 BYTE 0x30
+                0x0000000000000374        0x1 BYTE 0x30
+                0x0000000000000375        0x1 BYTE 0x30
+                0x0000000000000376        0x1 BYTE 0x0
+                0x0000000000000377        0x4 LONG 0xffffffffffffffff
+                0x000000000000037b        0x4 LONG 0x5000
+                0x000000000000037f        0x4 LONG 0x1
+                0x0000000000000383        0x1 BYTE 0x0
+                0x0000000000000384        0x2 SHORT 0x20
+                0x0000000000000386        0x1 BYTE 0x41
+                0x0000000000000387        0x1 BYTE 0x75
+                0x0000000000000388        0x1 BYTE 0x74
+                0x0000000000000389        0x1 BYTE 0x6f
+                0x000000000000038a        0x1 BYTE 0x43
+                0x000000000000038b        0x1 BYTE 0x6f
+                0x000000000000038c        0x1 BYTE 0x72
+                0x000000000000038d        0x1 BYTE 0x72
+                0x000000000000038e        0x1 BYTE 0x65
+                0x000000000000038f        0x1 BYTE 0x6c
+                0x0000000000000390        0x1 BYTE 0x61
+                0x0000000000000391        0x1 BYTE 0x74
+                0x0000000000000392        0x1 BYTE 0x69
+                0x0000000000000393        0x1 BYTE 0x6f
+                0x0000000000000394        0x1 BYTE 0x6e
+                0x0000000000000395        0x1 BYTE 0x5f
+                0x0000000000000396        0x1 BYTE 0x41
+                0x0000000000000397        0x1 BYTE 0x5f
+                0x0000000000000398        0x1 BYTE 0x6f
+                0x0000000000000399        0x1 BYTE 0x75
+                0x000000000000039a        0x1 BYTE 0x74
+                0x000000000000039b        0x1 BYTE 0x70
+                0x000000000000039c        0x1 BYTE 0x75
+                0x000000000000039d        0x1 BYTE 0x74
+                0x000000000000039e        0x1 BYTE 0x5f
+                0x000000000000039f        0x1 BYTE 0x61
+                0x00000000000003a0        0x1 BYTE 0x64
+                0x00000000000003a1        0x1 BYTE 0x64
+                0x00000000000003a2        0x1 BYTE 0x72
+                0x00000000000003a3        0x1 BYTE 0x0
+                0x00000000000003a4        0x4 LONG 0xffffffffffffffff
+                0x00000000000003a8        0x4 LONG 0xbf9a
+                0x00000000000003ac        0x4 LONG 0x1
+                0x00000000000003b0        0x1 BYTE 0x1
+                0x00000000000003b1        0x2 SHORT 0x18
+                0x00000000000003b3        0x1 BYTE 0x4d
+                0x00000000000003b4        0x1 BYTE 0x49
+                0x00000000000003b5        0x1 BYTE 0x43
+                0x00000000000003b6        0x1 BYTE 0x52
+                0x00000000000003b7        0x1 BYTE 0x4f
+                0x00000000000003b8        0x1 BYTE 0x43
+                0x00000000000003b9        0x1 BYTE 0x4f
+                0x00000000000003ba        0x1 BYTE 0x44
+                0x00000000000003bb        0x1 BYTE 0x45
+                0x00000000000003bc        0x1 BYTE 0x31
+                0x00000000000003bd        0x1 BYTE 0x0
+                0x00000000000003be        0x4 LONG 0xffffffffffffffff
+                0x00000000000003c2        0x4 LONG 0xe004
+                0x00000000000003c6        0x4 LONG 0x1
+                0x00000000000003ca        0x1 BYTE 0x0
+                0x00000000000003cb        0x2 SHORT 0x20
+                0x00000000000003cd        0x1 BYTE 0x69
+                0x00000000000003ce        0x1 BYTE 0x6e
+                0x00000000000003cf        0x1 BYTE 0x69
+                0x00000000000003d0        0x1 BYTE 0x74
+                0x00000000000003d1        0x1 BYTE 0x5f
+                0x00000000000003d2        0x1 BYTE 0x73
+                0x00000000000003d3        0x1 BYTE 0x65
+                0x00000000000003d4        0x1 BYTE 0x67
+                0x00000000000003d5        0x1 BYTE 0x0
+                0x00000000000003d6        0x4 LONG 0xffffffffffffffff
+                0x00000000000003da        0x4 LONG 0xffffffffffffffff
+                0x00000000000003de        0x4 LONG 0x1
+                0x00000000000003e2        0x1 BYTE 0x0
+                0x00000000000003e3        0x2 SHORT 0x20
+                0x00000000000003e5        0x1 BYTE 0x63
+                0x00000000000003e6        0x1 BYTE 0x6d
+                0x00000000000003e7        0x1 BYTE 0x33
+                0x00000000000003e8        0x1 BYTE 0x5f
+                0x00000000000003e9        0x1 BYTE 0x70
+                0x00000000000003ea        0x1 BYTE 0x72
+                0x00000000000003eb        0x1 BYTE 0x6f
+                0x00000000000003ec        0x1 BYTE 0x67
+                0x00000000000003ed        0x1 BYTE 0x5f
+                0x00000000000003ee        0x1 BYTE 0x30
+                0x00000000000003ef        0x1 BYTE 0x78
+                0x00000000000003f0        0x1 BYTE 0x30
+                0x00000000000003f1        0x1 BYTE 0x30
+                0x00000000000003f2        0x1 BYTE 0x30
+                0x00000000000003f3        0x1 BYTE 0x30
+                0x00000000000003f4        0x1 BYTE 0x30
+                0x00000000000003f5        0x1 BYTE 0x36
+                0x00000000000003f6        0x1 BYTE 0x33
+                0x00000000000003f7        0x1 BYTE 0x30
+                0x00000000000003f8        0x1 BYTE 0x0
+                0x00000000000003f9        0x4 LONG 0xffffffffffffffff
+                0x00000000000003fd        0x4 LONG 0x518c
+                0x0000000000000401        0x4 LONG 0x1
+                0x0000000000000405        0x1 BYTE 0x0
+                0x0000000000000406        0x2 SHORT 0x20
+                0x0000000000000408        0x1 BYTE 0x58
+                0x0000000000000409        0x1 BYTE 0x5f
+                0x000000000000040a        0x1 BYTE 0x53
+                0x000000000000040b        0x1 BYTE 0x79
+                0x000000000000040c        0x1 BYTE 0x73
+                0x000000000000040d        0x1 BYTE 0x74
+                0x000000000000040e        0x1 BYTE 0x65
+                0x000000000000040f        0x1 BYTE 0x6d
+                0x0000000000000410        0x1 BYTE 0x5f
+                0x0000000000000411        0x1 BYTE 0x53
+                0x0000000000000412        0x1 BYTE 0x74
+                0x0000000000000413        0x1 BYTE 0x61
+                0x0000000000000414        0x1 BYTE 0x63
+                0x0000000000000415        0x1 BYTE 0x6b
+                0x0000000000000416        0x1 BYTE 0x5f
+                0x0000000000000417        0x1 BYTE 0x4d
+                0x0000000000000418        0x1 BYTE 0x65
+                0x0000000000000419        0x1 BYTE 0x6d
+                0x000000000000041a        0x1 BYTE 0x6f
+                0x000000000000041b        0x1 BYTE 0x72
+                0x000000000000041c        0x1 BYTE 0x79
+                0x000000000000041d        0x1 BYTE 0x5f
+                0x000000000000041e        0x1 BYTE 0x52
+                0x000000000000041f        0x1 BYTE 0x65
+                0x0000000000000420        0x1 BYTE 0x73
+                0x0000000000000421        0x1 BYTE 0x65
+                0x0000000000000422        0x1 BYTE 0x72
+                0x0000000000000423        0x1 BYTE 0x76
+                0x0000000000000424        0x1 BYTE 0x65
+                0x0000000000000425        0x1 BYTE 0x64
+                0x0000000000000426        0x1 BYTE 0x0
+                0x0000000000000427        0x4 LONG 0xffffffffffffffff
+                0x000000000000042b        0x4 LONG 0x2f80
+                0x000000000000042f        0x4 LONG 0x1
+                0x0000000000000433        0x1 BYTE 0x1
+                0x0000000000000434        0x2 SHORT 0x18
+                0x0000000000000436        0x1 BYTE 0x69
+                0x0000000000000437        0x1 BYTE 0x73
+                0x0000000000000438        0x1 BYTE 0x72
+                0x0000000000000439        0x1 BYTE 0x5f
+                0x000000000000043a        0x1 BYTE 0x73
+                0x000000000000043b        0x1 BYTE 0x65
+                0x000000000000043c        0x1 BYTE 0x67
+                0x000000000000043d        0x1 BYTE 0x0
+                0x000000000000043e        0x4 LONG 0xffffffffffffffff
+                0x0000000000000442        0x4 LONG 0xffffffffffffffff
+                0x0000000000000446        0x4 LONG 0x1
+                0x000000000000044a        0x1 BYTE 0x0
+                0x000000000000044b        0x2 SHORT 0x20
+                0x000000000000044d        0x1 BYTE 0x63
+                0x000000000000044e        0x1 BYTE 0x6d
+                0x000000000000044f        0x1 BYTE 0x33
+                0x0000000000000450        0x1 BYTE 0x5f
+                0x0000000000000451        0x1 BYTE 0x64
+                0x0000000000000452        0x1 BYTE 0x61
+                0x0000000000000453        0x1 BYTE 0x74
+                0x0000000000000454        0x1 BYTE 0x61
+                0x0000000000000455        0x1 BYTE 0x5f
+                0x0000000000000456        0x1 BYTE 0x30
+                0x0000000000000457        0x1 BYTE 0x78
+                0x0000000000000458        0x1 BYTE 0x32
+                0x0000000000000459        0x1 BYTE 0x30
+                0x000000000000045a        0x1 BYTE 0x30
+                0x000000000000045b        0x1 BYTE 0x30
+                0x000000000000045c        0x1 BYTE 0x30
+                0x000000000000045d        0x1 BYTE 0x30
+                0x000000000000045e        0x1 BYTE 0x30
+                0x000000000000045f        0x1 BYTE 0x30
+                0x0000000000000460        0x1 BYTE 0x0
+                0x0000000000000461        0x4 LONG 0xffffffffffffffff
+                0x0000000000000465        0x4 LONG 0x4000
+                0x0000000000000469        0x4 LONG 0x1
+                0x000000000000046d        0x1 BYTE 0x0
+                0x000000000000046e        0x2 SHORT 0x20
+                0x0000000000000470        0x1 BYTE 0x46
+                0x0000000000000471        0x1 BYTE 0x69
+                0x0000000000000472        0x1 BYTE 0x6c
+                0x0000000000000473        0x1 BYTE 0x74
+                0x0000000000000474        0x1 BYTE 0x65
+                0x0000000000000475        0x1 BYTE 0x72
+                0x0000000000000476        0x1 BYTE 0x45
+                0x0000000000000477        0x1 BYTE 0x6e
+                0x0000000000000478        0x1 BYTE 0x67
+                0x0000000000000479        0x1 BYTE 0x69
+                0x000000000000047a        0x1 BYTE 0x6e
+                0x000000000000047b        0x1 BYTE 0x65
+                0x000000000000047c        0x1 BYTE 0x5f
+                0x000000000000047d        0x1 BYTE 0x50
+                0x000000000000047e        0x1 BYTE 0x47
+                0x000000000000047f        0x1 BYTE 0x4d
+                0x0000000000000480        0x1 BYTE 0x0
+                0x0000000000000481        0x4 LONG 0xffffffffffffffff
+                0x0000000000000485        0x4 LONG 0xf9c0
+                0x0000000000000489        0x4 LONG 0x1
+                0x000000000000048d        0x1 BYTE 0x0
+                0x000000000000048e        0x2 SHORT 0x20
+                0x0000000000000490        0x1 BYTE 0x58
+                0x0000000000000491        0x1 BYTE 0x59
+                0x0000000000000492        0x1 BYTE 0x5f
+                0x0000000000000493        0x1 BYTE 0x53
+                0x0000000000000494        0x1 BYTE 0x79
+                0x0000000000000495        0x1 BYTE 0x73
+                0x0000000000000496        0x1 BYTE 0x74
+                0x0000000000000497        0x1 BYTE 0x65
+                0x0000000000000498        0x1 BYTE 0x6d
+                0x0000000000000499        0x1 BYTE 0x5f
+                0x000000000000049a        0x1 BYTE 0x4d
+                0x000000000000049b        0x1 BYTE 0x65
+                0x000000000000049c        0x1 BYTE 0x6d
+                0x000000000000049d        0x1 BYTE 0x6f
+                0x000000000000049e        0x1 BYTE 0x72
+                0x000000000000049f        0x1 BYTE 0x79
+                0x00000000000004a0        0x1 BYTE 0x5f
+                0x00000000000004a1        0x1 BYTE 0x52
+                0x00000000000004a2        0x1 BYTE 0x65
+                0x00000000000004a3        0x1 BYTE 0x73
+                0x00000000000004a4        0x1 BYTE 0x65
+                0x00000000000004a5        0x1 BYTE 0x72
+                0x00000000000004a6        0x1 BYTE 0x76
+                0x00000000000004a7        0x1 BYTE 0x65
+                0x00000000000004a8        0x1 BYTE 0x64
+                0x00000000000004a9        0x1 BYTE 0x0
+                0x00000000000004aa        0x4 LONG 0xffffffffffffffff
+                0x00000000000004ae        0x4 LONG 0xffffffffffffffff
+                0x00000000000004b2        0x4 LONG 0x1
+                0x00000000000004b6        0x1 BYTE 0x3
+                0x00000000000004b7        0x2 SHORT 0x30
+                0x00000000000004b9        0x1 BYTE 0x58
+                0x00000000000004ba        0x1 BYTE 0x5f
+                0x00000000000004bb        0x1 BYTE 0x53
+                0x00000000000004bc        0x1 BYTE 0x79
+                0x00000000000004bd        0x1 BYTE 0x73
+                0x00000000000004be        0x1 BYTE 0x74
+                0x00000000000004bf        0x1 BYTE 0x65
+                0x00000000000004c0        0x1 BYTE 0x6d
+                0x00000000000004c1        0x1 BYTE 0x5f
+                0x00000000000004c2        0x1 BYTE 0x57
+                0x00000000000004c3        0x1 BYTE 0x4f
+                0x00000000000004c4        0x1 BYTE 0x4c
+                0x00000000000004c5        0x1 BYTE 0x41
+                0x00000000000004c6        0x1 BYTE 0x5f
+                0x00000000000004c7        0x1 BYTE 0x54
+                0x00000000000004c8        0x1 BYTE 0x65
+                0x00000000000004c9        0x1 BYTE 0x6d
+                0x00000000000004ca        0x1 BYTE 0x70
+                0x00000000000004cb        0x1 BYTE 0x31
+                0x00000000000004cc        0x1 BYTE 0x5f
+                0x00000000000004cd        0x1 BYTE 0x4d
+                0x00000000000004ce        0x1 BYTE 0x65
+                0x00000000000004cf        0x1 BYTE 0x6d
+                0x00000000000004d0        0x1 BYTE 0x6f
+                0x00000000000004d1        0x1 BYTE 0x72
+                0x00000000000004d2        0x1 BYTE 0x79
+                0x00000000000004d3        0x1 BYTE 0x5f
+                0x00000000000004d4        0x1 BYTE 0x52
+                0x00000000000004d5        0x1 BYTE 0x65
+                0x00000000000004d6        0x1 BYTE 0x73
+                0x00000000000004d7        0x1 BYTE 0x65
+                0x00000000000004d8        0x1 BYTE 0x72
+                0x00000000000004d9        0x1 BYTE 0x76
+                0x00000000000004da        0x1 BYTE 0x65
+                0x00000000000004db        0x1 BYTE 0x64
+                0x00000000000004dc        0x1 BYTE 0x0
+                0x00000000000004dd        0x4 LONG 0xffffffffffffffff
+                0x00000000000004e1        0x4 LONG 0x4400
+                0x00000000000004e5        0x4 LONG 0x1
+                0x00000000000004e9        0x1 BYTE 0x1
+                0x00000000000004ea        0x2 SHORT 0x18
+                0x00000000000004ec        0x1 BYTE 0x73
+                0x00000000000004ed        0x1 BYTE 0x65
+                0x00000000000004ee        0x1 BYTE 0x67
+                0x00000000000004ef        0x1 BYTE 0x45
+                0x00000000000004f0        0x1 BYTE 0x45
+                0x00000000000004f1        0x1 BYTE 0x4c
+                0x00000000000004f2        0x1 BYTE 0x49
+                0x00000000000004f3        0x1 BYTE 0x42
+                0x00000000000004f4        0x1 BYTE 0x0
+                0x00000000000004f5        0x4 LONG 0xffffffffffffffff
+                0x00000000000004f9        0x4 LONG 0xffffffffffffffff
+                0x00000000000004fd        0x4 LONG 0x1
+                0x0000000000000501        0x1 BYTE 0x0
+                0x0000000000000502        0x2 SHORT 0x20
+
+/DISCARD/
+ *(.cfasm_segments)
+LOAD ./CM3.o
+LOAD ./app.o
+LOAD ./app_init.o
+LOAD ./app_isr.o
+LOAD ./app_memory.o
+LOAD ./feng.o
+LOAD ./microcode.o
+START GROUP
+LOAD C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_eeprom.a
+LOAD C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a
+LOAD C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_math.a
+END GROUP
+OUTPUT(All_Core_Passthrough_AutoCorrelation.cfe elf32-cfx)
+
+.text           0x00000000000081a0        0x0 load address 0x0000000000000504
+ .text          0x00000000000081a0        0x0 ./CM3.o
+ .text          0x00000000000081a0        0x0 ./app.o
+ .text          0x00000000000081a0        0x0 ./app_init.o
+ .text          0x00000000000081a0        0x0 ./app_isr.o
+ .text          0x00000000000081a0        0x0 ./app_memory.o
+ .text          0x00000000000081a0        0x0 ./feng.o
+ .text          0x00000000000081a0        0x0 ./microcode.o
+ .text          0x00000000000081a0        0x0 C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+
+.data           0x00000000000081a0        0x0 load address 0x0000000000000504
+ .data          0x00000000000081a0        0x0 ./CM3.o
+ .data          0x00000000000081a0        0x0 ./app.o
+ .data          0x00000000000081a0        0x0 ./app_init.o
+ .data          0x00000000000081a0        0x0 ./app_isr.o
+ .data          0x00000000000081a0        0x0 ./app_memory.o
+ .data          0x00000000000081a0        0x0 ./feng.o
+ .data          0x00000000000081a0        0x0 ./microcode.o
+ .data          0x00000000000081a0        0x0 C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+
+.bss            0x00000000000081a0        0x0 load address 0x0000000000000504
+ .bss           0x00000000000081a0        0x0 ./CM3.o
+ .bss           0x00000000000081a0        0x0 ./app.o
+ .bss           0x00000000000081a0        0x0 ./app_init.o
+ .bss           0x00000000000081a0        0x0 ./app_isr.o
+ .bss           0x00000000000081a0        0x0 ./app_memory.o
+ .bss           0x00000000000081a0        0x0 ./feng.o
+ .bss           0x00000000000081a0        0x0 ./microcode.o
+ .bss           0x00000000000081a0        0x0 C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+
+.debug_line     0x0000000000000000    0x1fddd
+ .debug_line    0x0000000000000000     0x50ff ./CM3.o
+ .debug_line    0x00000000000050ff     0x546f ./app.o
+ .debug_line    0x000000000000a56e     0x5b4c ./app_init.o
+ .debug_line    0x00000000000100ba     0x51fe ./app_isr.o
+ .debug_line    0x00000000000152b8     0x5748 ./app_memory.o
+ .debug_line    0x000000000001aa00       0x57 ./feng.o
+ .debug_line    0x000000000001aa57      0x16c ./microcode.o
+ .debug_line    0x000000000001abc3     0x521a C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+
+.debug_info     0x0000000000000000      0x3f3
+ .debug_info    0x0000000000000000       0x78 ./CM3.o
+ .debug_info    0x0000000000000078       0x78 ./app.o
+ .debug_info    0x00000000000000f0       0x7d ./app_init.o
+ .debug_info    0x000000000000016d       0x7c ./app_isr.o
+ .debug_info    0x00000000000001e9       0x7f ./app_memory.o
+ .debug_info    0x0000000000000268       0x76 ./feng.o
+ .debug_info    0x00000000000002de       0xa8 ./microcode.o
+ .debug_info    0x0000000000000386       0x6d C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+
+.debug_abbrev   0x0000000000000000       0x90
+ .debug_abbrev  0x0000000000000000       0x12 ./CM3.o
+ .debug_abbrev  0x0000000000000012       0x12 ./app.o
+ .debug_abbrev  0x0000000000000024       0x12 ./app_init.o
+ .debug_abbrev  0x0000000000000036       0x12 ./app_isr.o
+ .debug_abbrev  0x0000000000000048       0x12 ./app_memory.o
+ .debug_abbrev  0x000000000000005a       0x12 ./feng.o
+ .debug_abbrev  0x000000000000006c       0x12 ./microcode.o
+ .debug_abbrev  0x000000000000007e       0x12 C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+
+.debug_aranges  0x0000000000000000      0x208
+ .debug_aranges
+                0x0000000000000000       0x38 ./CM3.o
+ .debug_aranges
+                0x0000000000000038       0x28 ./app.o
+ .debug_aranges
+                0x0000000000000060       0x28 ./app_init.o
+ .debug_aranges
+                0x0000000000000088       0x30 ./app_isr.o
+ .debug_aranges
+                0x00000000000000b8       0x80 ./app_memory.o
+ .debug_aranges
+                0x0000000000000138       0x30 ./feng.o
+ .debug_aranges
+                0x0000000000000168       0x78 ./microcode.o
+ .debug_aranges
+                0x00000000000001e0       0x28 C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)
+
+.debug_ranges   0x0000000000000000      0x1c8
+ .debug_ranges  0x0000000000000000       0x30 ./CM3.o
+ .debug_ranges  0x0000000000000030       0x20 ./app.o
+ .debug_ranges  0x0000000000000050       0x20 ./app_init.o
+ .debug_ranges  0x0000000000000070       0x28 ./app_isr.o
+ .debug_ranges  0x0000000000000098       0x78 ./app_memory.o
+ .debug_ranges  0x0000000000000110       0x28 ./feng.o
+ .debug_ranges  0x0000000000000138       0x70 ./microcode.o
+ .debug_ranges  0x00000000000001a8       0x20 C:\PROGRA~2\ONSEMI~1\EZAIRO~1/lib/cfx\sk4_sys.a(sk4_syslib.o)

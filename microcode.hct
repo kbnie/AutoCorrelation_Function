@@ -1,0 +1,156 @@
+// ----------------------------------------------------------------------------
+// Copyright (c) 2012 Semiconductor Components Industries, LLC
+// (d/b/a ON Semiconductor). All Rights Reserved.
+//
+// This code is the property of ON Semiconductor and may not be redistributed
+// in any form without prior written permission from ON Semiconductor. The
+// terms of use and warranty for this code are covered by contractual
+// agreements between ON Semiconductor and the licensee.
+// ----------------------------------------------------------------------------
+// microcode.hct
+// - Configure the microcode modules associated with the HEAR, including
+//   definition of function chains
+// ----------------------------------------------------------------------------
+// $Revision: 1.6 $
+// $Date: 2012/03/07 22:07:24 $
+// ----------------------------------------------------------------------------
+
+// WOLA configuration
+Define(WOLA_La, 512)    // The length of the analysis window
+Define(WOLA_Ls, 512)     // The length of the synthesis window
+Define(WOLA_N, 256)      // The FFT size (per channel) of the filterbank
+Define(WOLA_R, 64)       // The block size (per channel) of the filterbank
+Define(WOLA_STACKING, WOLA_STACKING_EVEN)  // Stacking of the filterbank bands
+Define(WOLA_ANALYSIS_MODE, WOLA_MODE_MONO)      // Specifies the WOLA analysis
+                                                // channel mode
+Define(WOLA_SYNTHESIS_MODE, WOLA_MODE_MONO)     // Specifies the WOLA synthesis
+                                                // channel mode
+
+Define(WOLA_SAMPLE_SIZE, WOLA_SAMPLE_18BITS)    // Specifies WOLA sample size
+
+Define(WOLA_TEMP0_OFFSET, 0)        // Address offset for the WOLA intermediate
+                                    // results, part0
+Define(WOLA_TEMP1_OFFSET, 0)        // Address offset for the WOLA intermediate
+                                    // results, part1
+Define(WOLA_RESULTS_OFFSET, WOLA_N) // Address offset for the WOLA results
+                                    // relative to H01MEM
+Define(GAIN_VECTOR_OFFSET, 0x0)     // The gain table offset (relative to
+                                    // H45MEM)
+
+// Base addresses of the WOLA intermediate result segments
+Define(X_WOLA_TEMP0_BASE, D_HEAR_H01MEM_BASE + WOLA_TEMP0_OFFSET)
+Define(X_WOLA_TEMP1_BASE, D_HEAR_H23MEM_BASE + WOLA_TEMP1_OFFSET)
+
+// Base address of the analysis results; must be located in interleaved memory
+Define(X_ANALYSIS_RESULTS_BASE, D_HEAR_H01MEM_BASE + WOLA_RESULTS_OFFSET)
+
+// Base address of the gain table, used in the gain application step
+Define(X_GAIN_TABLE_BASE, D_HEAR_H45MEM_BASE + GAIN_VECTOR_OFFSET)
+
+Define(X_AUROCORRELATION_BASE, D_HEAR_C0MEM_BASE)
+Define(X_AUROCORRELATION_Size, 256)
+Define(X_AUROCORRELATION_OUT_BASE, D_HEAR_C0MEM_BASE + X_AUROCORRELATION_Size)
+// FIFO parameter definitions
+Define(FIFO_A0_0_BASE, 0x0)    // The base of FIFO A0_0 relative to A0MEM
+Define(FIFO_A0_0_SIZE, 576)    // The size of FIFO A0_0. This size is defined
+                               // as (WOLA_La + WOLA_R), rounded up to the
+                               // nearest multiple of 32.
+Define(FIFO_A0_0_BASE_PTR, 0)  // CFX FIFO access pointer value for FIFO A0_0
+Define(FIFO_A0_0_IOC_PTR, 0)   // IOC FIFO access pointer value for FIFO A0_0
+
+Define(FIFO_B0_0_BASE, 0x0)    // The base of FIFO B0_0 relative to B0MEM
+Define(FIFO_B0_0_SIZE, 640)     // The size of FIFO B0_0. This size is defined
+                               // as (WOLA_Ls + WOLA_R), rounded up to the
+                               // nearest multiple of 32.
+Define(FIFO_B0_0_BASE_PTR, 0)  // CFX FIFO access pointer value for FIFO B0_0
+Define(FIFO_B0_0_IOC_PTR, WOLA_Ls + WOLA_R)   // IOC FIFO access pointer value
+                                              // for FIFO B0_0 //WOLA_Ls + WOLA_R
+
+// Address of the analysis input data (FIFO A0_0)
+Define(X_ANALYSIS_FIFO_ADDR, D_HEAR_A0MEM_BASE + FIFO_A0_0_BASE)
+
+// Address of the synthesis output data (FIFO B0_0)
+Define(X_SYNTHESIS_FIFO_ADDR, D_HEAR_B0MEM_BASE + FIFO_B0_0_BASE)
+
+
+//
+// Configure the FIFOs
+//
+
+// FIFO A0_0
+FIFOConfigure(FIFO_A0_0, FIFO_A0_0_BASE, FIFO_A0_0_SIZE, WOLA_R, FIFO_A0_0_BASE_PTR, FIFO_A0_0_IOC_PTR)
+
+
+// FIFO B0_0
+FIFOConfigure(FIFO_B0_0, FIFO_B0_0_BASE, FIFO_B0_0_SIZE, WOLA_R, FIFO_B0_0_BASE_PTR, FIFO_B0_0_IOC_PTR)
+
+
+//
+// Function Chain 0
+//
+StartFunctionChain(CMD0, function_chain0)
+
+    // Start the analysis function
+//    WOLA_Analysis(WOLA_A_Analysis,
+//                  WOLA_La, WOLA_Ls, WOLA_N, WOLA_R,
+//                  WOLA_STACKING, WOLA_ANALYSIS_MODE,
+//                  WOLA_WIN_MODE_DEFAULT,
+//                  X_ANALYSIS_FIFO_ADDR,
+//                  X_ANALYSIS_RESULTS_BASE,
+//                  X_WOLA_TEMP0_BASE, X_WOLA_TEMP1_BASE,
+//                  WOLA_SAMPLE_SIZE)
+//                  
+//    Energy( Energy_A, WOLA_N, WOLA_STACKING, WOLA_ANALYSIS_MODE,
+//            X_ANALYSIS_RESULTS_BASE,
+//            X_GAIN_TABLE_BASE)     
+            
+            
+    AutoCorrelation_R( AutoCorrelation_A,
+                        512,
+                        -14,
+                        0,
+                        255,
+                        X_ANALYSIS_FIFO_ADDR,
+                        X_AUROCORRELATION_OUT_BASE,
+                        1,
+                        1 )   
+             
+
+
+    // Trigger the HEAR_0 interrupt on the CFX
+    Event(0)
+EndFunctionChain()
+
+//
+// Function Chain 1
+//
+StartFunctionChain(CMD1, function_chain1)
+
+    // Start the gain application function
+//    Gain_R(GAIN_A, WOLA_N, WOLA_STACKING, WOLA_ANALYSIS_MODE,
+//           X_ANALYSIS_RESULTS_BASE,
+//           X_GAIN_TABLE_BASE,
+//           X_ANALYSIS_RESULTS_BASE)
+
+
+    // Trigger the HEAR_1 interrupt on the CFX
+    Event(1)
+EndFunctionChain()
+
+//
+// Function Chain 2
+//
+StartFunctionChain(CMD2, function_chain2)
+    // Start the synthesis function
+//    WOLA_Synthesis(WOLA_A_Synthesis, WOLA_La, WOLA_Ls, WOLA_N, WOLA_R,
+//                   WOLA_STACKING, WOLA_SYNTHESIS_MODE,
+//                   WOLA_WIN_MODE_DEFAULT,
+//                   X_SYNTHESIS_FIFO_ADDR,
+//                   X_ANALYSIS_RESULTS_BASE,
+//                   X_WOLA_TEMP0_BASE, X_WOLA_TEMP1_BASE,
+//                   WOLA_SAMPLE_SIZE)
+
+    // Trigger the HEAR_2 interrupt on the CFX
+    Event(2)
+EndFunctionChain()
+
